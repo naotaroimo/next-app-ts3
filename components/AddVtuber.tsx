@@ -9,7 +9,6 @@ const AddVtuber = () => {
 
     return (
         <div>
-
             <Formik
                 initialValues={
                     {
@@ -45,9 +44,7 @@ const AddVtuber = () => {
                         <Button type="submit" variant="contained" color="primary"> Add  </Button>
                     </Box>
                 </Form>
-
             </Formik>
-
         </div>
     );
 }
