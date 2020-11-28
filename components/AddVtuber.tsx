@@ -5,7 +5,8 @@ import useSWR, { mutate, trigger } from 'swr';
 
 const AddVtuber = () => {
     //mutate用に先にデータフェッチをしておく
-    const { data } = useSWR('http://localhost:4001/persons');
+    // const { data } = useSWR('http://localhost:4001/persons');
+    const {data} = useSWR('/persons');
 
     return (
         <div>
@@ -17,17 +18,19 @@ const AddVtuber = () => {
                     }
                 }
                 onSubmit={async (values, formikHelpers) => {
+                    const url = '/persons';
+
                     //post前にフェッチしているデータに対し更新をいれる。
                     //第２引数にフェッチデータdataとformikでバインドしてるvaluesを連結させる
                     //ただし,
                     //revalidate=false⇒SWRでのデータ再取得はaxios.postの後にする
-                    mutate('http://localhost:4001/persons', [...data, values], false);
+                    mutate(url, [...data, values], false);
 
-                    await axios.post('http://localhost:4001/persons',values);
+                    await axios.post(url,values);
                    
                     formikHelpers.resetForm();//フォームリセット
                     // alert(` input data '${values.name}' and '${values.details}' added ! `)
-                    trigger('http://localhost:4001/persons');
+                    trigger(url);
                 }}
             >
 

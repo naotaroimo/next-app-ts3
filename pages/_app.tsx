@@ -8,6 +8,8 @@ import { SWRConfig } from 'swr';//SWRのグローバルコンフィグ用
 import axios from 'axios';
 import Nav from '../components/Nav'; //App Bar用
 
+axios.defaults.baseURL = 'http://localhost:4001';
+
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
 
